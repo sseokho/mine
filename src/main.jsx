@@ -4,6 +4,10 @@ import './index.css'
 import App from './App.jsx'
 import { Provider } from 'react-redux';
 import store from '../src/store.js'
+import analytics from "./firebase.js";
+
+console.log(analytics);
+
 createRoot(document.getElementById('root')).render(
   <Provider store={store}>
     <StrictMode>

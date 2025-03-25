@@ -13,18 +13,11 @@ const categories = [
     { icon: <BsController size={40} />, label: "게임" },
     { icon: <BsLightbulb size={40} />, label: "조명" },
   ];
-  const images = [
-    "https://picsum.photos/800/400?random=1",
-    "https://picsum.photos/800/400?random=1",
-    "https://picsum.photos/800/400?random=1",
-    "https://picsum.photos/800/400?random=1",
-    "https://picsum.photos/800/400?random=1",
-    "https://picsum.photos/800/400?random=1",
-  ];
+
   
 function Home() {
     let slideImageData = useSelector((state) => { return state.slideImageData })
-
+    let productData = useSelector((state) => { return state.productData })
     return (
         <div className="content">
             <Carousel>
@@ -54,9 +47,16 @@ function Home() {
             </Container>
 
             <div className="scroll-container">
-                {images.map((src, index) => (
-                    <img key={index} src={src} alt={`Slide ${index}`} className="scroll-item" />
-                ))}
+                {
+                    productData.map((src, index) => (
+                        <Col key={index} xs={3} className="text-center category-item" >
+                            <img className="scroll-item" />
+                            <p><span>{ productData[index].cate }</span>{ productData[index].name }</p>
+                            <p>{ productData[index].price }</p>
+                        </Col>
+                        
+                    ))
+                }
             </div>
         </div>
     )
