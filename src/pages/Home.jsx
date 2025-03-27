@@ -3,6 +3,11 @@ import { useSelector } from 'react-redux';
 
 import { Carousel, Navbar, Nav, Container, Form, FormControl, Button, Row, Col } from 'react-bootstrap';
 import { BsPhone, BsLaptop, BsWatch, BsCamera, BsShop, BsBag, BsSunglasses, BsHeart, BsHouse, BsFillHouseDoorFill, BsGift, BsCart, BsPerson, BsHeadphones, BsController, BsLightbulb, BsGrid } from "react-icons/bs"; // 장바구니 아이콘
+
+import { db } from '../firebase'; 
+
+
+
 const categories = [
     { icon: <BsPhone size={40} />, label: "스마트폰" },
     { icon: <BsLaptop size={40} />, label: "노트북" },
@@ -18,6 +23,22 @@ const categories = [
 function Home() {
     let slideImageData = useSelector((state) => { return state.slideImageData })
     let productData = useSelector((state) => { return state.productData })
+
+    
+    db.collection('product').get().then((결과)=>{
+        결과.forEach((doc) => {
+            console.log(doc.data());
+        });
+    })
+
+    db.collection('array').get().then((결과)=>{
+        결과.forEach((doc) => {
+            console.log(doc.data().dp[1]);
+        });
+    })
+
+
+ 
     return (
         <div className="content">
             <Carousel>
