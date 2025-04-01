@@ -13,7 +13,7 @@ function Footer() {
         className="bottom-navbar py-2"
       >
         <Nav className="w-100 d-flex justify-content-around">
-          <Nav.Link href="#home" className="text-center text-light">
+          <Nav.Link href="/" className="text-center text-light">
             <BsHouse size={20} />
             <div style={{ fontSize: "12px" }}>홈</div>
           </Nav.Link>

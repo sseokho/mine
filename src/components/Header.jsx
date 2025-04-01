@@ -8,7 +8,7 @@ function Header() {
       <Navbar bg="dark" variant="dark" expand="lg" className="py-2">
         <Container className="d-flex justify-content-between">
           {/* 로고 */}
-          <Navbar.Brand href="#">MyBrand</Navbar.Brand>
+          <Navbar.Brand href="/">MyBrand</Navbar.Brand>
 
           {/* 검색창 */}
           <Form className="d-flex flex-grow-1 mx-2">

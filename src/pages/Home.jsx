@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux';
 
 import { Carousel, Navbar, Nav, Container, Form, FormControl, Button, Row, Col } from 'react-bootstrap';
 import { BsPhone, BsLaptop, BsWatch, BsCamera, BsShop, BsBag, BsSunglasses, BsHeart, BsHouse, BsFillHouseDoorFill, BsGift, BsCart, BsPerson, BsHeadphones, BsController, BsLightbulb, BsGrid } from "react-icons/bs"; // 장바구니 아이콘
+import { Link } from "react-router-dom";
 
 import { db } from '../firebase'; 
 
@@ -37,7 +38,6 @@ function Home() {
         });
     })
 
-
  
     return (
         <div className="content">
@@ -71,9 +71,11 @@ function Home() {
                 {
                     productData.map((src, index) => (
                         <Col key={index} xs={3} className="text-center category-item" >
-                            <img className="scroll-item" />
-                            <p><span>{ productData[index].cate }</span>{ productData[index].name }</p>
-                            <p>{ productData[index].price }</p>
+                            <Link to={`/ProductDetail/${index}`}> 
+                                <img className="scroll-item" src={ productData[index].url } />
+                                <p><span>{ productData[index].cate }</span>{ productData[index].name }</p>
+                                <p>{ productData[index].price }</p>
+                            </Link>
                         </Col>
                         
                     ))
