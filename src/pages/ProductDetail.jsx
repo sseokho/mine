@@ -1,33 +1,60 @@
-import { useParams } from "react-router-dom";
-import {useSelector} from 'react-redux';
-import { db } from '../firebase'; 
-const productData = {
-  1: { name: "노트북", description: "최신형 고성능 노트북" },
-  2: { name: "스마트폰", description: "최고의 카메라 성능을 자랑하는 스마트폰" },
-  3: { name: "태블릿", description: "가볍고 강력한 태블릿" },
-};
+import { useParams  } from "react-router-dom";
+import { useState, useEffect } from 'react'
 
+import { useSelector, useDispatch } from 'react-redux';
+import db, { FieldValue } from "../firebase"; 
+
+import { setReviews, addReview } from "../store"; 
 function ProducDetail() {
   const { id } = useParams();
-  // 등록하기
-  db.collection('product').doc('상품3').set({ 리뷰 : '' })
-  // 가져오기
-  db.collection('product').get().then((결과) => {
-    결과.forEach((doc) => {
-      console.log(doc.data());
-    })
-  })
-  let productData = useSelector((state)=>{ 
-    return state.productData
+  const dispatch = useDispatch();
+
+
+  let productData = useSelector((state) => {
+    return state.productData;
+  });
+  let productReview = useSelector((state) => {
+    return state.productReview.list;
   });
 
+  const [inpuText, setInputText] = useState("");
+  useEffect(() => {
+    // 등록하기
+    db.collection("Review")
+    .doc("리뷰")
+    .update({
+      reviews: FieldValue.arrayUnion(...productReview)
+    })
+    
+    
+    console.log("변함")
+  }, [productReview])
 
+  // // 가져오기
+    // db.collection('product').get().then((결과) => {
+    //   const productArray = [];
+    //   결과.forEach((doc) => {
+    //     productArray.push(doc.data());
+    //   })
+    //   dispatch(setProducts(productArray));
+    // })
+
+  const handleChange = () =>{
+    const reviewData = {id : id , review : inpuText};
+    dispatch(addReview(reviewData));
+    console.log("저장된 리뷰", reviewData)
+    setInputText("");
+    
+  }
 
   return (
     <div>
-      <img src={ productData[id].url } />
+      <img src={productData[id].url} />
       <h1>{productData[id].name}</h1>
       <p>{productData[id].description}</p>
+      {/* <div>{ 가져온값 }</div> */}
+      <textarea value={inpuText} className="review" onChange={(e) => setInputText(e.target.value)}></textarea>
+      <button className="btn" onClick={() => handleChange()}>리뷰입력</button>
     </div>
   );
 }

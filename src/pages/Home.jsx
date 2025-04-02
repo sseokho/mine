@@ -5,7 +5,7 @@ import { Carousel, Navbar, Nav, Container, Form, FormControl, Button, Row, Col }
 import { BsPhone, BsLaptop, BsWatch, BsCamera, BsShop, BsBag, BsSunglasses, BsHeart, BsHouse, BsFillHouseDoorFill, BsGift, BsCart, BsPerson, BsHeadphones, BsController, BsLightbulb, BsGrid } from "react-icons/bs"; // 장바구니 아이콘
 import { Link } from "react-router-dom";
 
-import { db } from '../firebase'; 
+
 
 
 
@@ -26,17 +26,7 @@ function Home() {
     let productData = useSelector((state) => { return state.productData })
 
     
-    db.collection('product').get().then((결과)=>{
-        결과.forEach((doc) => {
-            console.log(doc.data());
-        });
-    })
 
-    db.collection('array').get().then((결과)=>{
-        결과.forEach((doc) => {
-            console.log(doc.data().dp[1]);
-        });
-    })
 
  
     return (
