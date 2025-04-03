@@ -12,22 +12,23 @@ let productData = createSlice({
 })
 
 let productReviewSlice = createSlice({
-  name : "productReivew",
+  name : "productReview",
   initialState : {
-    list : [],
+    add : [],
+    load : [],
   },
   reducers : {
-    setReviews: (state,action) => {
-      state.list = action.payload;
-    },
     addReview: (state,action) => {
-      state.list.push(action.payload);
+      state.add.push(action.payload);
+    },
+    loadReview: (state,action) => {
+      state.load = action.payload;
     }
   }
 })
 
 
-export const { setReviews, addReview } = productReviewSlice.actions;
+export const { addReview, loadReview } = productReviewSlice.actions;
 
 export default configureStore({
   reducer: {
