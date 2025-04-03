@@ -81,7 +81,7 @@ function ProducDetail() {
         ))
         
       }
-      <div>{loadReviews.length}</div>
+      <div>리뷰 {loadReviews.length} 건</div>
       <textarea
         value={inpuText}
         className="review"

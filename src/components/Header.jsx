@@ -2,6 +2,8 @@ import {Navbar, Container, Form, FormControl, Button } from 'react-bootstrap';
 import { BsCart } from "react-icons/bs"; // 장바구니 아이콘
 import "bootstrap/dist/css/bootstrap.min.css";
 
+
+
 function Header() {
   return (
     <header>
@@ -19,6 +21,8 @@ function Header() {
               aria-label="Search"
             />
             <Button variant="outline-light">🔍</Button>
+            <a href="/login" >로그인</a>
+            <Button variant="outline-light">회원가입</Button>
           </Form>
 
           {/* 장바구니 아이콘 */}
